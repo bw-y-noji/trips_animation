@@ -8,6 +8,11 @@ import DeckGL from '@deck.gl/react';
 import {PolygonLayer} from '@deck.gl/layers';
 import {TripsLayer} from '@deck.gl/geo-layers';
 
+// Import variables from variables.json
+import variables from './variables.json';
+
+const { max_lon, min_lon_and_initial, max_lat, min_lat_and_initial } = variables;
+
 // Source data CSV
 const DATA_URL = {
   BUILDINGS:
@@ -44,8 +49,8 @@ const DEFAULT_THEME = {
 };
 
 const INITIAL_VIEW_STATE = {
-  longitude: 136.80,
-  latitude: 36.99,
+  longitude: min_lon_and_initial, // Use the value from variables.json
+  latitude: min_lat_and_initial, // Use the value from variables.json
   zoom: 13,
   pitch: 45,
   bearing: 0
@@ -55,11 +60,11 @@ const MAP_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-styl
 
 const landCover = [
   [
-    [136.70, 36.90],
-    [136.90, 36.90],
-    [136.90, 37.00],
-    [136.70, 37.00]
-  ]
+    [max_lon, min_lat_and_initial], // Use the values from variables.json
+    [max_lon, max_lat], // Use the values from variables.json
+    [min_lon_and_initial, max_lat], // Use the values from variables.json
+    [min_lon_and_initial, min_lat_and_initial], // Use the values from variables.json
+  ],
 ];
 
 export default function App({
